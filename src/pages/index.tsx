@@ -2,8 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import StartPage from "@/screens/StartPage";
+import { useScreenStore } from "@/zustand";
+import { SCREENS } from "@/constants";
+import GamePlay from "@/screens/GamePlay";
 
 export default function Home() {
+  const { screen, setGameplay } = useScreenStore((state) => state);
   return (
     <>
       <Head>
@@ -12,7 +16,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <StartPage />
+      {screen === SCREENS.START ? (
+        <StartPage onStart={setGameplay} />
+      ) : (
+        <GamePlay />
+      )}
     </>
   );
 }
