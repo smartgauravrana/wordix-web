@@ -6,7 +6,7 @@ type Props = {
 };
 
 function Logo({ className = "" }: Props) {
-  return <img className={twMerge("h-7", className)} src="/logo.png" />;
+  return <img className={twMerge("h-7", className)} src="/Logo.png" />;
 }
 
 export default Logo;
