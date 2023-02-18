@@ -1,5 +1,5 @@
 import { useScreenStore } from "@/zustand";
-import React from "react";
+import React, { KeyboardEvent } from "react";
 import CustomKeyboard from "../CustomKeyboard";
 import Word from "../Word";
 
@@ -10,7 +10,7 @@ const WORDS = ["Knob", "Mat", "Bell"];
 function GameArea({}: Props) {
   const { setResultScreen } = useScreenStore((state) => state);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setResultScreen();
     }
