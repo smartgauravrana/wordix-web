@@ -1,5 +1,6 @@
 import { useScreenStore } from "@/zustand";
 import React, { KeyboardEvent } from "react";
+import useSound from "use-sound";
 import CustomKeyboard from "../CustomKeyboard";
 import Word from "../Word";
 
@@ -9,10 +10,12 @@ const WORDS = ["Knob", "Mat", "Bell"];
 
 function GameArea({}: Props) {
   const { setResultScreen } = useScreenStore((state) => state);
+  const [play] = useSound("/fanfare.mp3");
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setResultScreen();
+      play();
     }
   };
 

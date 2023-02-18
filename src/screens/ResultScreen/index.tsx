@@ -1,13 +1,25 @@
+import React, { useEffect } from "react";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 import AdBanner from "@/components/AdBanner";
 import Donate from "@/components/Donate";
 import { DownloadIcon, FacebookIcon, WhatsappIcon } from "@/components/ImgIcon";
-import React from "react";
 
 type Props = {};
 
 function ResultScreen({}: Props) {
+  const { width, height } = useWindowSize();
+
   return (
     <div>
+      <Confetti
+        width={width}
+        height={height}
+        recycle={false}
+        onConfettiComplete={(confetti) => {
+          confetti?.reset();
+        }}
+      />
       <AdBanner />
       {/* SCORE */}
       <div className="pt-[62px] pb-[32px] flex flex-col items-center">
