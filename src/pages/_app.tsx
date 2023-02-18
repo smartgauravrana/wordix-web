@@ -3,7 +3,10 @@ import type { AppProps } from "next/app";
 import { Rubik } from "@next/font/google";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 
-const rubik = Rubik({ subsets: ["latin"] });
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 const rootElement =
   typeof window !== "undefined" ? document.getElementById("__next") : null;
