@@ -3,22 +3,32 @@ import "react-simple-keyboard/build/css/index.css";
 
 type Props = {
   onChange: any;
+  onKeyReleased: any;
 };
 
-export default function CustomKeyboard({ onChange }: Props) {
+export default function CustomKeyboard({ onChange, onKeyReleased }: Props) {
   return (
-    <div>
+    <div className="fixed bottom-2.5 left-0 right-0">
       <Keyboard
         onChange={onChange}
-        theme="hg-theme-default hg-theme-ios"
+        onKeyReleased={onKeyReleased}
+        // theme="hg-theme-default hg-theme-ios"
+        theme="hg-theme-default bg-black"
         layout={{
           default: [
-            "q w e r t y u i o p",
-            "a s d f g h j k l",
-            "{enter} z x c v b n m {bksp}",
+            "Q W E R T Y U I O P",
+            "A S D F G H J K L",
+            "{enter} Z X C V B N M {bksp}",
           ],
         }}
         inputName="answer"
+        buttonTheme={[
+          {
+            class: "bg-[#828282] font-semibold",
+            buttons:
+              "Q W E R T Y U I O P A S D F G H J K L {enter} Z X C V B N M {bksp}",
+          },
+        ]}
       />
     </div>
   );
