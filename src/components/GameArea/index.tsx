@@ -10,7 +10,7 @@ const WORDS = ["Knob", "Mat", "Bell"];
 function GameArea({}: Props) {
   const { setResultScreen } = useScreenStore((state) => state);
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       setResultScreen();
     }
