@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Rubik } from "@next/font/google";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
+import Modal from "@/components/Modal";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Component {...pageProps} />
+        <Modal />
       </ThemeProvider>
     </>
   );

@@ -3,3 +3,8 @@ export const SCREENS = {
   GAMEPLAY: "GAMEPLAY",
   RESULT: "RESULt",
 };
+
+export const MODAL_TYPES = {
+  HINT_MODAL: "HINT_MODAL",
+  HOW_TO_PLAY_MODAL: "HOW_TO_PLAY_MODAL",
+};
