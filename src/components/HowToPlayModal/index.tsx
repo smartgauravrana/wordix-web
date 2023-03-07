@@ -10,7 +10,7 @@ function HowToPlayModal({}: Props) {
   const { hideModal } = useModalStore((state) => state);
   const { setGameplay } = useScreenStore((state) => state);
   return (
-    <div className="relative max-w-[358px] bg-[#101010] mx-auto pt-8 pb-[26px] flex flex-col items-center mt-[150px]">
+    <div className="relative max-w-[358px] bg-[#101010] mx-auto pt-8 pb-[26px] flex flex-col items-center mt-[90px]">
       <CloseIcon className="absolute right-6 top-6" onClick={hideModal} />
       <p className="text-2xl font-semibold">How to play</p>
       <p className="text-lg font-light leading-[21px] mt-4">
