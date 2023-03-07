@@ -1,4 +1,6 @@
+import { MODAL_TYPES } from "@/constants";
 import { useScreenStore } from "@/zustand";
+import useModalStore from "@/zustand/useModal";
 import React, { KeyboardEvent, useState } from "react";
 import useSound from "use-sound";
 import CustomKeyboard from "../CustomKeyboard";
@@ -10,6 +12,7 @@ const WORDS = ["Knob", "Mat", "Bell"];
 
 function GameArea({}: Props) {
   const { setResultScreen } = useScreenStore((state) => state);
+  const { showModal } = useModalStore((state) => state);
   // const [value, setValue] = useState("");
   const [play] = useSound("/fanfare.mp3");
 
@@ -46,7 +49,14 @@ function GameArea({}: Props) {
       </div>
       {/* <CustomKeyboard onChange={handleChange} onKeyReleased={handleKeyDown} /> */}
 
-      <p className="text-[#828282] text-[15px] text-center leading-[18px] mt-[29px] ">
+      <p
+        className="text-[#828282] text-[15px] text-center leading-[18px] mt-[29px] "
+        onClick={() =>
+          showModal({
+            modalType: MODAL_TYPES.HINT_MODAL,
+          })
+        }
+      >
         Need Hint?
       </p>
     </div>

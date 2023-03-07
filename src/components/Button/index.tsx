@@ -16,7 +16,7 @@ type Props = {
 };
 
 const commonClassnames =
-  "flex items-center rounded-[4px] py-[16px] w-[212px] leading-5 text-lg";
+  "flex items-center rounded-[4px] py-[16px] w-[212px] leading-5 text-lg normal-case";
 
 const VARIANTS_CLASSES = {
   filled: twMerge("bg-[#EEEEEE] "),
