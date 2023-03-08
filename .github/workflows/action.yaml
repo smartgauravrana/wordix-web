@@ -19,7 +19,7 @@ jobs:
         run: yarn
       - name: Creating .env file
         run: |
-          echo BOT_TOKEN=${{ secrets.BOT_TOKEN}} >> .env
+          echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL}} >> .env
       - name: Build the project
         run: yarn build
       - name: Listing files and remove node_modules
