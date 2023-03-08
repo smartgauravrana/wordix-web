@@ -21,7 +21,6 @@ function Modal({}: Props) {
     })
   );
   const SpecificModal = MODAL_COMPONENTS[modalType];
-  console.log("modal: ", modalType);
 
   const rootElement =
     typeof window !== "undefined" ? document.getElementById("__next") : null;

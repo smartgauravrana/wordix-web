@@ -2,6 +2,13 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Rubik } from "@next/font/google";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
 import Modal from "@/components/Modal";
 
 const rubik = Rubik({
@@ -38,6 +45,9 @@ const darkTheme = createTheme({
   },
 });
 
+// Create a client
+const queryClient = new QueryClient();
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -48,11 +58,14 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-        <Modal />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+
+          <Component {...pageProps} />
+          <Modal />
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   );
 }
