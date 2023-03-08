@@ -1,25 +1,43 @@
+import { submitQuiz } from "@/api/quiz";
 import { MODAL_TYPES } from "@/constants";
+import LatestQuizResponse from "@/models/QuizResponse";
 import { useScreenStore } from "@/zustand";
 import useModalStore from "@/zustand/useModal";
 import React, { KeyboardEvent, useState } from "react";
+import { useMutation } from "react-query";
+import { twMerge } from "tailwind-merge";
 import useSound from "use-sound";
 import CustomKeyboard from "../CustomKeyboard";
 import Word from "../Word";
 
-type Props = {};
+type Props = {
+  quiz: LatestQuizResponse;
+};
 
 const WORDS = ["Knob", "Mat", "Bell"];
 
-function GameArea({}: Props) {
+function GameArea({ quiz }: Props) {
+  const [isWrong, setIsWrong] = useState(false);
   const { setResultScreen } = useScreenStore((state) => state);
   const { showModal } = useModalStore((state) => state);
   // const [value, setValue] = useState("");
   const [play] = useSound("/fanfare.mp3");
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+  const submitMutation = useMutation(submitQuiz, {
+    onError: () => {
+      setIsWrong(true);
+    },
+    onSuccess: () => {
       setResultScreen();
       play();
+    },
+  });
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      // setResultScreen();
+      // play();
+      submitMutation.mutate(quiz.id);
     }
   };
 
@@ -40,7 +58,10 @@ function GameArea({}: Props) {
         <input
           name="answer"
           placeholder="Type from letters below"
-          className=" text-lg leading-[21px] w-full bg-[#0C0C0C] border-[0.5px] border-solid border-[#DDDDDD] py-[14px] px-10 outline-none text-center"
+          className={twMerge(
+            "leading-[21px] w-full bg-[#0C0C0C] border-[0.5px] border-solid border-[#DDDDDD] py-[14px] px-10 outline-none text-center text-2xl font-bold",
+            isWrong && "bg-[#CD2828] text-white"
+          )}
           onKeyDown={handleKeyDown}
           autoComplete="off"
           // value={value}

@@ -9,6 +9,13 @@ interface ApiCallConfig {
   headers: object;
 }
 
+export const HTTP_METHODS = {
+  GET: "get",
+  POST: "post",
+  PUT: "put",
+  DELETE: "delete",
+};
+
 export async function apiCall({
   method = "get",
   url,
